@@ -15,6 +15,7 @@ open class PasscodeSignPlaceholderView: UIView {
         case inactive
         case active
         case error
+        case success
     }
     
     @IBInspectable
@@ -33,6 +34,13 @@ open class PasscodeSignPlaceholderView: UIView {
     
     @IBInspectable
     open var errorColor: UIColor = UIColor.red {
+        didSet {
+            setupView()
+        }
+    }
+    
+    @IBInspectable
+    open var successColor: UIColor = UIColor.green {
         didSet {
             setupView()
         }
@@ -59,7 +67,7 @@ open class PasscodeSignPlaceholderView: UIView {
         
         layer.cornerRadius = 8
         layer.borderWidth = 1
-        layer.borderColor = activeColor.cgColor
+        layer.borderColor = inactiveColor.cgColor
         backgroundColor = inactiveColor
     }
     
@@ -69,6 +77,7 @@ open class PasscodeSignPlaceholderView: UIView {
         case .inactive: return (inactiveColor, activeColor)
         case .active: return (activeColor, activeColor)
         case .error: return (errorColor, errorColor)
+        case .success: return (successColor, successColor)
         }
     }
     
